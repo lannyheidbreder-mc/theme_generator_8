@@ -4,6 +4,7 @@ const { src, dest } = require('gulp');
 // Include Our Plugins.
 var concat = require('gulp-concat');
 var order = require('gulp-order');
+var sourcemaps = require('gulp-sourcemaps');
 
 // Export our tasks.
 module.exports = {
@@ -43,7 +44,9 @@ module.exports = {
         //   'dist/js/button.js',
         //   'dist/js/*.js'
         // ], { base: './' }))
+        .pipe(sourcemaps.init())
         .pipe(concat('all.js'))
+        .pipe(sourcemaps.write('./'))
         .pipe(dest('./dist/js'))
     );
   }
